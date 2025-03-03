@@ -32,8 +32,13 @@ uv sync
 ```
 
 ## 运行应用
-1. 从Hugging Face或者Modelscope下载数据集放入data目录(也可以自定义数据集)
-2. 运行以下命令启动应用
+1. clone项目到本地,创建data文件夹用于存放数据集
+```bash
+git clone https://github.com/Argobell/data4vlmsft.git
+mkdir data
+```
+2. 从Hugging Face或者Modelscope下载数据集放入data目录(也可以自定义数据集)
+3. 运行以下命令启动应用
 ```bash
 streamlit run app.py
 ```
