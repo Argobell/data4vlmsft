@@ -21,8 +21,8 @@ def main():
     # 侧边栏
     with st.sidebar:
         st.header("⚙️ 设置")
-        dataset_path = st.text_input("数据集路径", value=r"D:\data4vlm\data\hwe-text")
-        save_dir = st.text_input("图像保存目录", value="./downloaded_images")
+        dataset_path = st.text_input("数据集路径")
+        save_dir = st.text_input("图像保存目录")
         num_samples = st.number_input("样本数量", min_value=1, value=10)
         st.markdown("---")
         st.markdown("### 自定义 Instructions")
@@ -85,6 +85,8 @@ def main():
 
     # 生成数据集
     st.header("🛠️ 生成数据集")
+    # 添加文件名输入框
+    output_filename = st.text_input("生成JSON文件的文件名（不含扩展名）")
     if st.button("生成数据集"):
         if not dataset_path or not save_dir:
             st.error("请填写数据集路径和保存目录！")
@@ -96,7 +98,7 @@ def main():
 
                     # 保存数据集
                     os.makedirs(save_dir, exist_ok=True)
-                    output_path = os.path.join(save_dir, "sharegpt_dataset.json")
+                    output_path = os.path.join(save_dir, f"{output_filename}.json")  # 使用用户输入的文件名
                     with open(output_path, "w", encoding="utf-8") as f:
                         json.dump(sharegpt_data, f, ensure_ascii=False, indent=4)
                     st.success(f"数据集生成成功！保存路径：{output_path}")
@@ -106,7 +108,7 @@ def main():
                         st.download_button(
                             label="📥 下载数据集",
                             data=f,
-                            file_name="sharegpt_dataset.json",
+                            file_name=f"{output_filename}.json",  # 使用用户输入的文件名
                             mime="application/json"
                         )
             except Exception as e:

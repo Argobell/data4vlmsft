@@ -37,7 +37,7 @@ uv sync
 git clone https://github.com/Argobell/data4vlmsft.git
 mkdir data
 ```
-2. 从Hugging Face或者Modelscope下载数据集放入data目录(也可以自定义数据集)
+2. 从Hugging Face或者Modelscope下载数据集放入datasets目录(也可以自定义数据集)
 3. 运行以下命令启动应用
 ```bash
 streamlit run app.py
